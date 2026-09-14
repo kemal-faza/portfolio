@@ -65,6 +65,7 @@ summary::-webkit-details-marker { display: none; }
 summary span { font-size: 22px; color: #0a7abd; font-weight: 400; }
 details[open] summary span { transform: rotate(45deg); }
 .expanded-content { padding-block: 10px; }
+details[data-accordion] > .expanded-content { box-sizing: border-box; overflow: hidden; }
 .supplemental { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 14px; margin-block: 24px; }
 .supplemental img { width: 100%; height: auto; border: 1px solid #dce2e6; border-radius: 6px; }
 .yodips-support { grid-template-columns: 1fr 1.5fr; }
@@ -155,6 +156,7 @@ footer p, footer > div { font-size: 11px; color: #abb8c4; }
   .primary-link > span, .email-link > span { transition: transform .25s cubic-bezier(.22, 1, .36, 1); }
   .primary-link:hover > span { transform: translateY(3px); }
   .email-link:hover > span { transform: translate(3px, -3px); }
+  details summary span { transition: transform .45s cubic-bezier(.22, 1, .36, 1); }
   .project-links a {
     background-image: linear-gradient(currentColor, currentColor);
     background-repeat: no-repeat;

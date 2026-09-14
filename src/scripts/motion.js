@@ -9,6 +9,7 @@ import { animate, inView, scroll, stagger } from 'motion';
  *   [data-reveal-stagger]    container whose children reveal in sequence
  *   [data-count]             number that counts up to its authored value
  *   [data-parallax]          scroll-linked vertical drift
+ *   <details>                progressive accordion open/close animation
  *
  * Content is hidden by CSS only while <html> carries [data-motion], which an
  * inline guard in the document head sets before first paint and only when the
@@ -23,6 +24,7 @@ const EASE = [0.22, 1, 0.36, 1];
 const RISE = 22;
 const DURATION = 0.65;
 const STAGGER = 0.1;
+const ACCORDION_DURATION = 0.45;
 
 /** Mirror of the selector list the stylesheet hides under [data-motion]. */
 const HIDDEN_BY_CSS = '[data-hero], [data-reveal], [data-reveal-stagger] > *';
@@ -114,6 +116,118 @@ function setupParallax(root) {
   }
 }
 
+const accordionAnimations = new WeakMap();
+
+function clearAccordionStyles(content) {
+  content.style.removeProperty('height');
+  content.style.removeProperty('opacity');
+  content.style.removeProperty('transform');
+  content.style.removeProperty('overflow');
+}
+
+function stopAccordionAnimation(detail) {
+  const animation = accordionAnimations.get(detail);
+  if (!animation) return;
+  animation.cancel();
+  accordionAnimations.delete(detail);
+}
+
+function setAccordionState(detail, summary, state) {
+  detail.dataset.accordionState = state;
+  summary.setAttribute('aria-expanded', String(state === 'open' || state === 'opening'));
+}
+
+function showAccordionWithoutAnimation(detail, summary, content, open) {
+  stopAccordionAnimation(detail);
+  detail.open = open;
+  setAccordionState(detail, summary, open ? 'open' : 'closed');
+  clearAccordionStyles(content);
+}
+
+function openAccordion(detail, summary, content) {
+  stopAccordionAnimation(detail);
+  detail.open = true;
+  setAccordionState(detail, summary, 'opening');
+  content.style.overflow = 'hidden';
+  content.style.height = '0px';
+  content.style.opacity = '0';
+  content.style.transform = 'translateY(-8px)';
+
+  requestAnimationFrame(() => {
+    try {
+      const animation = animate(
+        content,
+        { height: [0, content.scrollHeight], opacity: [0, 1], y: [-8, 0] },
+        {
+          duration: ACCORDION_DURATION,
+          ease: EASE,
+          onComplete: () => {
+            accordionAnimations.delete(detail);
+            setAccordionState(detail, summary, 'open');
+            clearAccordionStyles(content);
+          },
+        },
+      );
+      accordionAnimations.set(detail, animation);
+    } catch (error) {
+      showAccordionWithoutAnimation(detail, summary, content, true);
+      console.error('[motion] accordion opening failed, content shown without animation', error);
+    }
+  });
+}
+
+function closeAccordion(detail, summary, content) {
+  stopAccordionAnimation(detail);
+  detail.open = true;
+  setAccordionState(detail, summary, 'closing');
+  content.style.overflow = 'hidden';
+  content.style.height = `${content.getBoundingClientRect().height}px`;
+  content.style.opacity = '1';
+  content.style.transform = 'translateY(0px)';
+
+  requestAnimationFrame(() => {
+    try {
+      const animation = animate(
+        content,
+        { height: [content.getBoundingClientRect().height, 0], opacity: [1, 0], y: [0, -8] },
+        {
+          duration: ACCORDION_DURATION,
+          ease: EASE,
+          onComplete: () => {
+            accordionAnimations.delete(detail);
+            showAccordionWithoutAnimation(detail, summary, content, false);
+          },
+        },
+      );
+      accordionAnimations.set(detail, animation);
+    } catch (error) {
+      showAccordionWithoutAnimation(detail, summary, content, false);
+      console.error('[motion] accordion closing failed, content closed without animation', error);
+    }
+  });
+}
+
+function setupAccordions(root) {
+  for (const detail of root.querySelectorAll('details')) {
+    const summary = detail.querySelector('summary');
+    const content = detail.querySelector('.expanded-content');
+    if (!summary || !content) continue;
+
+    detail.dataset.accordion = '';
+    setAccordionState(detail, summary, detail.open ? 'open' : 'closed');
+    summary.addEventListener('click', (event) => {
+      // Returning here preserves native <details> behaviour for reduced motion,
+      // a failed module, and any later preference change.
+      if (prefersReducedMotion() || !root.hasAttribute('data-motion')) return;
+
+      event.preventDefault();
+      const isClosing = detail.dataset.accordionState === 'closing';
+      if (detail.open && !isClosing) closeAccordion(detail, summary, content);
+      else openAccordion(detail, summary, content);
+    });
+  }
+}
+
 export function initMotion(doc = document) {
   const root = doc.documentElement;
 
@@ -150,6 +264,7 @@ export function initMotion(doc = document) {
       inView(el, () => countUp(el), { amount: 0.5 });
     }
 
+    setupAccordions(root);
     setupParallax(root);
   } catch (error) {
     revealEverything(root);

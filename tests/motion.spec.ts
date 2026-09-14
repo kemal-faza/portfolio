@@ -83,6 +83,24 @@ test.describe('motion layer', () => {
     await expect.poll(() => values.nth(1).textContent(), { timeout: 8000 }).toBe('0.73969');
   });
 
+  test('project accordions animate open and closed', async ({ page }) => {
+    await page.goto('/');
+    const details = page.locator('#yodips details');
+    const content = details.locator('.expanded-content');
+
+    await expect(details).not.toHaveAttribute('open', '');
+    await details.locator('summary').click();
+    await expect(details).toHaveAttribute('open', '');
+    await expect
+      .poll(() => content.evaluate((el) => el.getBoundingClientRect().height), { timeout: 8000 })
+      .toBeGreaterThan(0);
+    await expect(details.locator('summary')).toHaveAttribute('aria-expanded', 'true');
+
+    await details.locator('summary').click();
+    await expect(details).not.toHaveAttribute('open', '');
+    await expect(details.locator('summary')).toHaveAttribute('aria-expanded', 'false');
+  });
+
   test('reduced motion: nothing is hidden and nothing is left waiting', async ({ browser }) => {
     const context = await browser.newContext({
       reducedMotion: 'reduce',
