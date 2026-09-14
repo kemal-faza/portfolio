@@ -42,7 +42,7 @@ jobs:
       - name: Install Playwright browser
         run: npx playwright install --with-deps chromium
 
-      # playwright.config.ts builds and serves the site itself (webServer).
+      # `npm test` builds the site, then the Playwright webServer serves dist/.
       - name: Run Playwright tests
         run: npm test
 

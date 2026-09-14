@@ -14,7 +14,11 @@ export default defineConfig({
     { name: 'desktop', use: { ...devices['Desktop Chrome'] } },
   ],
   webServer: {
-    command: 'npm run build && npm run preview -- --port 4321',
+    // The build is deliberately not part of this command: with
+    // reuseExistingServer, Playwright skips the command entirely when the port
+    // is already serving, which would silently test a stale dist/. `npm test`
+    // builds first, so the artefacts under test are always current.
+    command: 'ASTRO_PREVIEW_BACKGROUND=0 npm run preview -- --port 4321',
     url: 'http://localhost:4321',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,

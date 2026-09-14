@@ -131,3 +131,41 @@ footer p, footer > div { font-size: 11px; color: #abb8c4; }
   footer p { width: calc(100% - 100px); text-align: right; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* ── Motion layer ────────────────────────────────────────────────────────────
+   [data-motion] is set on <html> by an inline guard in the document head,
+   before first paint, and only when the visitor has not asked for reduced
+   motion. Styling the hidden state under that attribute means the page is
+   never withheld from a visitor whose browser runs no JavaScript, and the
+   guard's failsafe can hand it back if the motion script never boots. */
+[data-motion] [data-hero],
+[data-motion] [data-reveal],
+[data-motion] [data-reveal-stagger] > * { opacity: 0; }
+
+/* Belt and braces: if the attribute is ever set against our wishes, the
+   preference still wins. */
+@media (prefers-reduced-motion: reduce) {
+  [data-motion] [data-hero],
+  [data-motion] [data-reveal],
+  [data-motion] [data-reveal-stagger] > * { opacity: 1; }
+}
+
+/* Hover is the browser's job, not a JavaScript library's. */
+@media (prefers-reduced-motion: no-preference) {
+  .primary-link > span, .email-link > span { transition: transform .25s cubic-bezier(.22, 1, .36, 1); }
+  .primary-link:hover > span { transform: translateY(3px); }
+  .email-link:hover > span { transform: translate(3px, -3px); }
+  .project-links a {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0 1px;
+    transition: background-size .3s cubic-bezier(.22, 1, .36, 1);
+    padding-bottom: 2px;
+  }
+  .project-links a:hover { background-size: 100% 1px; }
+  .process-grid h3 span { transition: transform .3s cubic-bezier(.22, 1, .36, 1); }
+  .process-grid > div:hover h3 span { transform: translate(3px, -3px); }
+  .nav-contact { transition: border-color .2s ease; }
+  .nav-contact:hover { border-color: currentColor; }
+}

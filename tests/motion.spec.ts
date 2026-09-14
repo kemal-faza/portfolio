@@ -14,7 +14,7 @@ const PROJECT_IDS = ['yodips', 'levelup', 'lastbite', 'dac'];
 const opacityOf = (el: Element) => Number(getComputedStyle(el).opacity);
 
 /** Every element the motion layer is allowed to hide before revealing it. */
-const ANIMATED = '[data-reveal], [data-hero]';
+const ANIMATED = '[data-reveal], [data-hero], [data-reveal-stagger] > *';
 
 test.describe('motion layer', () => {
   test('ships a script to the browser', async ({ page }) => {
@@ -118,6 +118,23 @@ test.describe('motion layer', () => {
     for (const id of PROJECT_IDS) {
       await expect(page.locator(`#${id}`), `#${id} must be readable without JavaScript`).toBeVisible();
     }
+    await context.close();
+  });
+
+  test('content survives the motion module never loading', async ({ browser }) => {
+    const context = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+    const page = await context.newPage();
+    await page.route('**/_astro/*.js', (route) => route.abort());
+    await page.goto('/');
+    await page.waitForTimeout(2000);
+
+    const hidden = await page.evaluate(
+      (selector) => Array.from(document.querySelectorAll(selector)).filter((el) => Number(getComputedStyle(el).opacity) < 1).length,
+      ANIMATED,
+    );
+    expect(hidden, 'a failed script must not leave the page blank').toBe(0);
+    await expect(page.getByText(HERO_HEADLINE)).toBeVisible();
+    await expect(page.getByText('0.8177')).toBeVisible();
     await context.close();
   });
 
