@@ -1,23 +1,13 @@
 # Kemal Faza — Portfolio
 
-A single-page portfolio built with Astro and Tailwind CSS v4. Astro generates static HTML with no client-side JavaScript. Project screenshots are served as responsive WebP images; Inter is hosted locally.
+Source for my personal portfolio: one page covering four projects, each with screenshots and a short write-up.
 
-## Development
+It runs on Astro with Tailwind CSS v4 and builds to plain static HTML. Screenshots go through Astro's image pipeline and come out as responsive WebP. Inter is bundled with the build rather than pulled from a font CDN.
 
-Requires Node.js 22.12 or newer.
+## Where things live
 
-```sh
-npm ci
-npm run dev
-```
+Copy and markup are in `src/pages/index.astro`, styles in `src/styles/global.css`, and project images in `src/assets/`. Parts of the YoDips screenshots are blacked out on purpose, so keep them that way.
 
-## Production
+## Tests
 
-```sh
-npm run build
-npm run preview
-```
-
-Deploy `dist/` to any static host. No backend or environment variables are required.
-
-Edit portfolio content in `src/pages/index.astro`, styling in `src/styles/global.css`, and project images in `src/assets/`. Keep the redactions in YoDips screenshots intact.
+`npm test` runs the Playwright suite in `tests/`, which covers the motion layer: scroll reveals, the DAC metric counters, and reduced-motion behaviour. That layer isn't wired up yet, so the specs checking for a shipped script and a JS-rendered score fail for now.
