@@ -1,0 +1,85 @@
+---
+import { Image } from 'astro:assets';
+import '@fontsource-variable/inter';
+import '../styles/global.css';
+import yodips from '../assets/yodips/yodips_web_dashboard_redacted.jpg';
+import mobile from '../assets/yodips/yodips_mobile_redacted.jpg';
+import extension from '../assets/yodips/yodips_extension_redacted.jpg';
+import levelup from '../assets/levelup/levelup_accessibility_panel.png';
+import quiz from '../assets/levelup/levelup_adaptive_quiz.png';
+import landing from '../assets/levelup/levelup_landing.png';
+import certificate from '../assets/levelup/citech_finalist_certificate_crop.jpg';
+import listing from '../assets/lastbite/lastbite_product_listing.jpeg';
+import detail from '../assets/lastbite/lastbite_product_detail.jpeg';
+import seller from '../assets/lastbite/lastbite_seller_dashboard.jpeg';
+import dac from '../assets/dac/dac_kaggle_notebook.png';
+const steps = [
+  ['01', 'Understand', 'Frame the real user or system problem.'],
+  ['02', 'Build', 'Turn an idea into something concrete.'],
+  ['03', 'Test', 'Look for evidence, not assumptions.'],
+  ['04', 'Learn', 'Carry the lesson into the next iteration.'],
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#111820" />
+    <title>Muhamad Kemal Faza — Product Engineering Portfolio</title>
+    <meta name="description" content="Informatics student exploring product engineering, accessibility, and machine learning. Selected projects by Muhamad Kemal Faza." />
+    <meta property="og:title" content="Muhamad Kemal Faza — Building systems. Understanding people." />
+    <meta property="og:description" content="Four projects connecting product engineering, accessibility, and disciplined experimentation." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="header">
+      <nav class="shell flex items-center justify-between gap-4" aria-label="Main navigation">
+        <a class="wordmark" href="#home" aria-label="Kemal Faza, home">kemal<span>.</span></a>
+        <div class="flex items-center gap-6 sm:gap-9 text-sm">
+          <a href="#work">Work</a><a href="#about">About</a><a class="nav-contact" href="#contact">Let’s talk <span aria-hidden="true">↗</span></a>
+        </div>
+      </nav>
+    </header>
+    <main id="main">
+      <section id="home" class="hero">
+        <div class="shell">
+          <div class="hero-top"><span class="eyebrow"><span class="status-dot"></span> MUHAMAD KEMAL FAZA</span><span class="edition">SELECTED WORK / 2026</span></div>
+          <h1>Building systems.<br />Understanding people.<br /><span>Connecting both.</span></h1>
+          <div class="hero-bottom">
+            <p>I’m Kemal, an Informatics student at Diponegoro University. I build digital experiences with curiosity about the systems behind them—and the people using them.</p>
+            <a class="primary-link" href="#work">Explore my work <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="hero-footer"><span>PRODUCT ENGINEERING <i>/</i> ACCESSIBILITY <i>/</i> MACHINE LEARNING</span><span class="edition">SCROLL TO EXPLORE ↓</span></div>
+        </div>
+      </section>
+      <section id="work" class="shell work-section" aria-labelledby="work-heading">
+        <div class="section-heading"><div><p class="eyebrow blue">A FEW THINGS I’VE BUILT</p><h2 id="work-heading">Selected work<span class="count">(04)</span></h2></div><p>Different problems.<br />The same curiosity.</p></div>
+        <article class="project" id="yodips">
+          <div class="project-intro"><div><p class="eyebrow blue">01 / PRODUCT ENGINEERING</p><h3>YoDips<span class="project-dot">.</span></h3></div><p class="project-statement">Three academic systems.<br />One student experience.</p></div>
+          <div class="image-stage yodips-stage"><Image src={yodips} alt="Redacted YoDips web dashboard bringing university services into one interface" widths={[640, 960, 1440]} sizes="(max-width: 700px) 90vw, 1080px" format="webp" /></div>
+          <div class="project-body"><dl class="metadata"><div><dt>YEAR / CONTEXT</dt><dd>2026 · Self-initiated · Individual</dd></div><div><dt>MY ROLE</dt><dd>Sole Developer & Product Owner</dd></div><div class="project-links"><a href="https://github.com/kemal-faza/yodips">View source ↗</a><a href="https://sso.crunchy.my.id">Visit website ↗</a></div></dl><div><h4>Less fragmentation. More focus.</h4><p>Assignments, grades, schedules, and attendance live across separate UNDIP systems. I built YoDips to bring SSO, Kulon, and SIAP together across web, Android, and a browser extension. A few close friends have also used it.</p><details><summary>Behind the build <span aria-hidden="true">+</span></summary><div class="expanded-content"><h4>Convenience should not require giving up trust.</h4><p>Users authenticate with the university directly. YoDips reuses the verified session instead of collecting or storing their password.</p><div class="supplemental yodips-support"><Image src={mobile} alt="Redacted YoDips Android dashboard" width={300} format="webp" /><Image src={extension} alt="YoDips browser extension setup with the backend URL redacted" width={580} format="webp" /></div><p class="lesson">What I learned: architecture and user experience are connected. A secure system that feels confusing still creates friction.</p></div></details></div></div>
+        </article>
+        <article class="project" id="levelup">
+          <div class="project-intro"><div><p class="eyebrow blue">02 / ACCESSIBILITY</p><h3>LevelUp<span class="project-dot">.</span></h3></div><p class="project-statement">Different minds.<br />Different ways to learn.</p></div>
+          <div class="image-stage levelup-stage"><Image src={levelup} alt="LevelUp learning interface showing its accessibility panel and ADHD profile" widths={[640, 960, 1440]} sizes="(max-width: 700px) 90vw, 1080px" format="webp" /></div>
+          <div class="project-body"><dl class="metadata"><div><dt>YEAR / CONTEXT</dt><dd>2026 · Competition · Team of 3</dd></div><div><dt>MY ROLE</dt><dd>Project Manager, UI Baseline Designer<br />& Contributing Developer</dd></div><div><dt>RECOGNITION</dt><dd class="blue">↗ CITECH 2026 Finalist · Universitas Jember</dd></div></dl><div><h4>Learning that adapts to the learner.</h4><p>LevelUp explores interfaces for different ways of reading and focusing, with ADHD, Dyslexia, and General learning profiles. I coordinated our team, established the baseline UI, shaped product direction, and implemented selected features.</p><details><summary>Explore the approach <span aria-hidden="true">+</span></summary><div class="expanded-content"><p>Reading controls include Lexend and OpenDyslexic, adjustable font size and spacing, text-to-speech, and focus tools. Adaptive quiz difficulty supports the learning experience.</p><div class="supplemental"><Image src={landing} alt="LevelUp home page" width={700} format="webp" /><Image src={quiz} alt="Adaptive quiz using the Dyslexia reading profile" width={700} format="webp" /></div><figure class="certificate"><Image src={certificate} alt="CITECH 2026 finalist certificate" width={420} format="webp" /><figcaption>Finalist evidence · CITECH 2026</figcaption></figure><p class="lesson">What I learned: accessibility changes the product from the beginning—not only its settings at the end.</p></div></details></div></div>
+        </article>
+        <article class="project" id="lastbite">
+          <div class="project-intro"><div><p class="eyebrow blue">03 / HUMAN–COMPUTER INTERACTION</p><h3>LastBite<span class="project-dot">.</span></h3></div><p class="project-statement">Good food.<br />A second opportunity.</p></div>
+          <div class="image-stage phone-gallery">{[[listing, 'LastBite buyer listings for surplus food'], [detail, 'LastBite product details and ordering'], [seller, 'LastBite seller dashboard']].map(([src, alt]) => <Image src={src as ImageMetadata} alt={alt as string} widths={[240, 400]} sizes="(max-width: 700px) 25vw, 260px" format="webp" />)}</div>
+          <div class="project-body"><dl class="metadata"><div><dt>YEAR / CONTEXT</dt><dd>2026 · Class + Competition · Team of 3</dd></div><div><dt>MY ROLE</dt><dd>Programmer during team prototype;<br />independent development afterward</dd></div><div><dt>VALIDATION</dt><dd>11 users · System Usability Scale</dd></div></dl><div><h4>From team prototype to a fuller product.</h4><p>LastBite connects businesses with safe, unsold food to people looking for affordable meals through discounted listings, ordering, and scheduled pickup. After the group prototype, I independently extended the concept into a fuller mobile implementation.</p><details><summary>What testing taught me <span aria-hidden="true">+</span></summary><div class="expanded-content"><p>The prototype experience was evaluated with 11 users using the System Usability Scale (SUS).</p><p class="lesson">A flow that makes sense to the developer does not automatically make sense to the user. Continuing beyond the assignment revealed the implementation details a prototype leaves open.</p></div></details></div></div>
+        </article>
+        <article class="project" id="dac">
+          <div class="project-intro"><div><p class="eyebrow blue">04 / MACHINE LEARNING</p><h3>Beyond the pixels<span class="project-dot">.</span></h3></div><p class="project-statement">Deepfake classification.<br />Evidence over intuition.</p></div>
+          <div class="image-stage dac-stage"><Image src={dac} alt="DAC Find-IT Kaggle notebook and submitted private score of 0.73969" widths={[640, 960, 1440]} sizes="(max-width: 700px) 90vw, 1080px" format="webp" /></div>
+          <div class="project-body"><dl class="metadata"><div><dt>PROJECT</dt><dd>DAC Find-IT 2026</dd></div><div><dt>YEAR / CONTEXT</dt><dd>2026 · Competition · Team of 3</dd></div><div><dt>MY ROLE</dt><dd>Collaborative ML Experimentation</dd></div></dl><div><h4>Model performance is an experimentation problem.</h4><p>Each team member trained and compared approaches. Our submitted notebook used ConvNeXt Tiny for six-class classification, stratified five-fold validation, and a five-model ensemble.</p><div class="metrics"><div><strong>0.8177</strong><span>Best fold validation Macro F1</span></div><div><strong>0.73969</strong><span>Kaggle private score</span></div></div><details><summary>Inside the experiment <span aria-hidden="true">+</span></summary><div class="expanded-content"><p>Class-balanced weights, cross-entropy with 0.1 label smoothing, and CosineAnnealingLR supported training. We saved the best model per fold and used three-way test-time augmentation: 15 probability outputs per image.</p><p class="lesson">What I learned: validation, class imbalance, augmentation, and inference decisions shape reliability just as much as architecture.</p></div></details></div></div>
+        </article>
+      </section>
+      <section id="about" class="about-section"><div class="shell"><p class="eyebrow blue">THE PERSON BEHIND THE PROJECTS</p><div class="about-grid"><h2>From “does it work?”<br />to <span>“who is it for?”</span></h2><div><p>My projects moved from pure implementation toward product thinking, accessibility, validation, and disciplined experimentation. The technology changed; the habit of learning did not.</p><p>I’m studying Informatics at Diponegoro University. I see systems, accessibility, and machine learning as different tools for understanding and solving problems.</p></div></div><div class="process-grid">{steps.map(([number, title, description]) => <div><span class="step-number">{number}</span><h3>{title}<span aria-hidden="true">↗</span></h3><p>{description}</p></div>)}</div><div class="academy-note"><p class="eyebrow">THE NEXT CHAPTER / APPLE DEVELOPER ACADEMY</p><p>I know how to build. Now I want to become better at deciding what is worth building—by learning from users and collaborating with people who think differently from me.</p></div></div></section>
+      <section id="contact" class="contact-section"><div class="shell"><p class="eyebrow">LET’S CONNECT</p><h2>Good things start<br />with a <span>conversation.</span></h2><a class="email-link" href="mailto:kemalfaza26@gmail.com">kemalfaza26@gmail.com <span aria-hidden="true">↗</span></a><footer><a class="wordmark" href="#home">kemal<span>.</span></a><p>© {new Date().getFullYear()} Muhamad Kemal Faza</p><div class="flex gap-6"><a href="https://github.com/kemal-faza">GitHub ↗</a><a href="https://linkedin.com/in/muhamad-kemal-faza">LinkedIn ↗</a></div></footer></div></section>
+    </main>
+  </body>
+</html>
