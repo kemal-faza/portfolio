@@ -13,6 +13,34 @@ import listing from '../assets/lastbite/lastbite_product_listing.jpeg';
 import detail from '../assets/lastbite/lastbite_product_detail.jpeg';
 import seller from '../assets/lastbite/lastbite_seller_dashboard.jpeg';
 import dac from '../assets/dac/dac_kaggle_notebook.png';
+const siteUrl = 'https://kemal.crunchy.my.id/';
+const pageTitle = 'Muhamad Kemal Faza — Software Engineer & Informatics Student';
+const pageDescription =
+  'Portfolio of Muhamad Kemal Faza, Software Engineer and Informatics student at Diponegoro University. Web, mobile, accessibility, and machine learning projects.';
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${siteUrl}#person`,
+      name: 'Muhamad Kemal Faza',
+      url: siteUrl,
+      jobTitle: 'Software Engineer',
+      description: 'Software Engineer and Informatics student at Diponegoro University.',
+      affiliation: { '@type': 'CollegeOrUniversity', name: 'Diponegoro University' },
+      sameAs: ['https://github.com/kemal-faza', 'https://linkedin.com/in/muhamad-kemal-faza'],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}#website`,
+      url: siteUrl,
+      name: 'Muhamad Kemal Faza — Portfolio',
+      description: pageDescription,
+      publisher: { '@id': `${siteUrl}#person` },
+      inLanguage: 'en',
+    },
+  ],
+};
 const steps = [
   ['01', 'Understand', 'Frame the real user or system problem.'],
   ['02', 'Build', 'Turn an idea into something concrete.'],
@@ -26,12 +54,27 @@ const steps = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#111820" />
-    <title>Muhamad Kemal Faza — Product Engineering Portfolio</title>
-    <meta name="description" content="Portfolio of Muhamad Kemal Faza, an Informatics student at Diponegoro University. Four selected projects in product engineering, accessibility, and machine learning." />
-    <meta property="og:title" content="Muhamad Kemal Faza — Building systems. Understanding people." />
-    <meta property="og:description" content="Four projects in product engineering, accessibility, and machine learning." />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <meta name="author" content="Muhamad Kemal Faza" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={siteUrl} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:site_name" content="Muhamad Kemal Faza" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content={`${siteUrl}og-image.png`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Muhamad Kemal Faza — Software Engineer and Informatics Student" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={`${siteUrl}og-image.png`} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     <script is:inline>
       // Runs before first paint. Motion's vanilla API does not honour
       // prefers-reduced-motion on its own, so the gate is decided here and the
@@ -63,9 +106,9 @@ const steps = [
       <section id="home" class="hero">
         <div class="shell">
           <div class="hero-top"><span class="eyebrow" data-hero><span class="status-dot"></span> MUHAMAD KEMAL FAZA</span><span class="edition" data-hero>SELECTED WORK / 2026</span></div>
-          <h1 data-hero>Building systems.<br />Understanding people.<br /><span>Connecting both.</span></h1>
+          <h1 data-hero>Muhamad Kemal Faza.<br />Building systems.<br /><span>Understanding people.</span></h1>
           <div class="hero-bottom">
-            <p data-hero>I’m Kemal, an Informatics student at Diponegoro University. I build digital products and keep asking how the systems behind them work, and who ends up using them.</p>
+            <p data-hero>I’m Kemal, a Software Engineer and Informatics student at Diponegoro University. I build digital products and keep asking how the systems behind them work, and who ends up using them.</p>
             <a class="primary-link" href="#work" data-hero>Explore my work <span aria-hidden="true">↓</span></a>
           </div>
           <div class="hero-footer"><span data-hero>PRODUCT ENGINEERING <i>/</i> ACCESSIBILITY <i>/</i> MACHINE LEARNING</span><span class="edition" data-hero>SCROLL TO EXPLORE ↓</span></div>

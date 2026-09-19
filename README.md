@@ -4,6 +4,8 @@ Source for my personal portfolio: one page covering four projects, each with scr
 
 It runs on Astro with Tailwind CSS v4 and builds to plain static HTML. Screenshots go through Astro's image pipeline and come out as responsive WebP. Inter is bundled with the build rather than pulled from a font CDN.
 
+The production URL is `https://kemal.crunchy.my.id`. The static SEO surface lives in `public/`: `robots.txt`, `sitemap.xml`, and the social preview image. The landing page also publishes canonical, Open Graph, Twitter Card, and Person/WebSite structured-data metadata.
+
 ## Where things live
 
 Copy and markup are in `src/pages/index.astro`, styles in `src/styles/global.css`, and project images in `src/assets/`. Parts of the YoDips screenshots are blacked out on purpose, so keep them that way.
@@ -13,6 +15,14 @@ Copy and markup are in `src/pages/index.astro`, styles in `src/styles/global.css
 `npm test` builds the site and then runs the Playwright suite in `tests/` against the
 built output. The specs cover the motion layer: scroll reveals, the DAC metric
 counters, and reduced-motion behaviour.
+
+## SEO deployment checklist
+
+After deploying the site:
+
+1. Add `https://kemal.crunchy.my.id` to Google Search Console and complete domain verification.
+2. Submit `https://kemal.crunchy.my.id/sitemap.xml` and request indexing for the homepage.
+3. Add the website URL to the GitHub, LinkedIn, Kaggle, and competition profiles that use the name Muhamad Kemal Faza.
 
 ## Motion
 

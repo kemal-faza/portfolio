@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#111820"/>
+  <circle cx="1090" cy="90" r="210" fill="#183143"/>
+  <circle cx="1130" cy="80" r="120" fill="#204862" opacity=".65"/>
+  <text x="88" y="112" fill="#77bce4" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="5">SOFTWARE ENGINEER / INFORMATICS STUDENT</text>
+  <text x="88" y="300" fill="#f7f9fa" font-family="Inter, Arial, sans-serif" font-size="78" font-weight="600" letter-spacing="-2">Muhamad Kemal</text>
+  <text x="88" y="390" fill="#f7f9fa" font-family="Inter, Arial, sans-serif" font-size="78" font-weight="600" letter-spacing="-2">Faza.</text>
+  <rect x="88" y="456" width="112" height="4" fill="#77bce4"/>
+  <text x="88" y="518" fill="#abb8c4" font-family="Inter, Arial, sans-serif" font-size="25">Building systems. Understanding people.</text>
+  <text x="88" y="574" fill="#667989" font-family="Inter, Arial, sans-serif" font-size="18" letter-spacing="2">KEMAL.CRUNCHY.MY.ID</text>
+</svg>
