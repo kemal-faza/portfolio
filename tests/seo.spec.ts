@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 
 const SITE_URL = 'https://kemal.crunchy.my.id/';
 const PAGE_TITLE = 'Muhamad Kemal Faza — Software Engineer & Informatics Student';
+const GOOGLE_VERIFICATION_FILE = '/googlea9b894ef629a88a2.html';
 
 test.describe('SEO surface', () => {
   test('publishes crawlable identity metadata', async ({ page }) => {
@@ -61,5 +62,12 @@ test.describe('SEO surface', () => {
     expect(await robots.text()).toContain(`Sitemap: ${SITE_URL}sitemap.xml`);
     expect(sitemap.ok()).toBe(true);
     expect(await sitemap.text()).toContain(`<loc>${SITE_URL}</loc>`);
+  });
+
+  test('serves the Google Search Console HTML verification file', async ({ request }) => {
+    const verification = await request.get(GOOGLE_VERIFICATION_FILE);
+
+    expect(verification.ok()).toBe(true);
+    expect(await verification.text()).toBe('google-site-verification: googlea9b894ef629a88a2.html\n');
   });
 });
